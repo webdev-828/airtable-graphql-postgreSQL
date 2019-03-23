@@ -1,0 +1,15 @@
+version: '2'
+services:
+  test:
+    build: .
+    command: npm run test-in-docker
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://airtable@postgres/airtable
+      NODE_ENV: test
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: airtable
+      POSTGRES_DB: airtable
